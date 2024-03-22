@@ -13,3 +13,24 @@ def hello_world(request):
     
 def index(request):
     return render(request, 'index.html')
+
+
+def printFriendData(request):
+    if request.method == "GET":
+        return JsonResponse({
+            'status' : 200,
+            'success' : True,
+            'message' : '메시지 전달 성공!',
+            'data' : [
+                {
+                    "name" : "이영주",
+                    "age" : 24,
+                    "major" : "Chinese Language and Literature"
+                },
+                {
+                    "name" : "김명규",
+                    "age" : 24,
+                    "major" : "Computer Engineering"
+                }
+            ]
+        })
