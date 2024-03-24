@@ -12,8 +12,19 @@ def hello_world(request):
         })
     
 def index(request):
-    return render(request, 'index.html')
+    my_data = {
+        "name" : "이영주",
+        "age" : 24,
+        "major" : "Chinese Language and Literature"
+    }
+    friend_data = {
+        "name" : "김명규",
+        "age" : 24,
+        "major" : "Computer Engineering"
+    }
 
+    return render(request, 'index.html', {"my_data" : my_data, "friend_data" : friend_data})
+    
 
 def printFriendData(request):
     if request.method == "GET":
