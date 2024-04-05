@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404 # 추가
 from django.views.decorators.http import require_http_methods
 from posts.models import *
 import json
+from datetime import datetime
 
 @require_http_methods(["POST", "GET"])
 def post_list(request):
@@ -114,3 +115,58 @@ def post_detail(request, id):
             'message' : '게시글 삭제 성공',
             'data' : None
         })
+    
+@require_http_methods(["GET"])
+def show_all_comments(request, id):
+    comment_all = Comment.objects.filter(post_id_id=id)
+
+    comment_json_all = []
+
+    for comment in comment_all:
+        comment_json={
+            "id" : comment.id,
+            "comments" : comment.comments,
+            "post_id" : comment.post_id.id,
+            "user_id" : comment.user_id.id,
+            "user_username" : comment.user_id.username,
+            "is_secret" : comment.is_secret
+        }
+
+        comment_json_all.append(comment_json)
+
+    return JsonResponse({
+        'status' : 200,
+        'message' : '게시물에 달린 모든 댓글 보기',
+        'data' : comment_json_all
+    })
+
+@require_http_methods(["GET"])
+def posts_within_one_week(request):
+    start_date = datetime(2024,4,4)
+    end_date = datetime(2024,4,10)
+
+    filtered_posts_all = Post.objects.filter(created_at__range=(start_date, end_date)).order_by('-created_at')
+    
+    filtered_posts_json_all = []
+
+    for filtered_post in filtered_posts_all:
+        filtered_post_json = {
+            "created_at" : filtered_post.created_at,
+            "id" : filtered_post.id,
+            "title" : filtered_post.title,
+            "content" : filtered_post.content,
+            "user_id" : filtered_post.user_id.id,
+            "user_username" : filtered_post.user_id.username,
+            "category" : filtered_post.category
+        }
+
+        filtered_posts_json_all.append(filtered_post_json)
+    
+
+    return JsonResponse({
+        'status' : 200,
+        'message': '일주일 내의 모든 게시물(생성시각 순)',
+        'data' : filtered_posts_json_all
+    })
+
+

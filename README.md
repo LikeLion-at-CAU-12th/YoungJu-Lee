@@ -22,3 +22,9 @@
 ![스크린샷 2024-03-31 204033](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/6864d9e4-c78c-4434-b6b7-120a3e77de5e)
 
 --------
+#### <center> CRUD-session 스탠다드 과제 인증샷 1 : 게시글에 포함된 모든 Comment 읽어오는 API <center>
+![스크린샷 2024-04-05 203019](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/cd251972-7635-4a67-95f7-3c264159fd7b)
+![스크린샷 2024-04-05 205016](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/83b22968-a065-423e-ac92-a285ea0ea6ae)
+
+#### <center> CRUD-session 스탠다드 과제 인증샷 2 : 일주일 내 모든 게시글 불러오기 기능 <center>
+![스크린샷 2024-04-05 214729](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/102fd3f1-2b2c-4f68-b209-80805cc91f5f)
