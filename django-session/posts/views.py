@@ -57,7 +57,8 @@ def get_post_detail(request,id):
         "id" : post.id,
         "title" : post.title,
         "content" : post.content,
-        "writer" : post.user_id,
+        "user_id" : post.user_id_id,
+        "user_username" : post.user_id.username,
         "category" : post.category,
     }
 
