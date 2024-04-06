@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse # 추가 
 from django.shortcuts import get_object_or_404 # 추가
+from django.views.decorators.http import require_http_methods
+from posts.models import *
+import json
 
 # Create your views here.
 
@@ -47,9 +50,6 @@ def printFriendData(request):
         })
 
 
-from django.views.decorators.http import require_http_methods
-from posts.models import *
-
 @require_http_methods(["GET"])
 def get_post_detail(request,id):
     post = get_object_or_404(Post, pk=id)
@@ -66,4 +66,34 @@ def get_post_detail(request,id):
         'status' : 200,
         'message' : '게시글 조회 성공',
         'data' : post_detail_json
+    })
+
+@require_http_methods(["POST"])
+def create_post(request):
+
+    user_id = request.POST.get('user_id')
+    user = User.objects.get(pk=user_id)
+
+    new_post = Post.objects.create(
+        title = request.POST['title'],
+        content = request.POST['content'],
+        user_id = user,
+        category = request.POST['category'],
+        image = request.FILES['image']
+    )
+
+    new_post_json = {
+        "id" : new_post.id,
+        "title" : new_post.title,
+        "content" : new_post.content,
+        "user_id" : new_post.user_id.id,
+        "user_username" : new_post.user_id.username,
+        "category": new_post.category,
+        "image" : new_post.image.name
+    }
+
+    return JsonResponse({
+        'status' : 200,
+        'message' : '게시글 생성 성공',
+        'data' : new_post_json
     })

@@ -6,4 +6,5 @@ urlpatterns = [
     path('page', index, name = 'my-page'),
     path('introduction', printFriendData, name = 'printFriendData'),
     path('<int:id>', get_post_detail, name = "게시글 조회"),
+    path('create', create_post, name = "게시글 작성"),
 ]

@@ -22,3 +22,6 @@
 ![스크린샷 2024-03-31 204033](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/6864d9e4-c78c-4434-b6b7-120a3e77de5e)
 
 --------
+
+#### <center> CRUD-session 챌린지 과제 인증샷<center>
+![스크린샷 2024-04-06 221557](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/9b4ce792-3b61-430d-a284-0283b21b3201)
