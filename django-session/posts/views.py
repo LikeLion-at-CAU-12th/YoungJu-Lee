@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404 # 추가
 from django.views.decorators.http import require_http_methods
 from posts.models import *
 import json
-from datetime import datetime
+from datetime import datetime,timedelta
 
 @require_http_methods(["POST", "GET"])
 def post_list(request):
@@ -142,10 +142,10 @@ def show_all_comments(request, id):
 
 @require_http_methods(["GET"])
 def posts_within_one_week(request):
-    start_date = datetime(2024,4,4)
-    end_date = datetime(2024,4,10)
+    request_date = datetime.now()
+    target_date = request_date - timedelta(days=7)
 
-    filtered_posts_all = Post.objects.filter(created_at__range=(start_date, end_date)).order_by('-created_at')
+    filtered_posts_all = Post.objects.filter(created_at__range=(target_date, request_date)).order_by('-created_at')
     
     filtered_posts_json_all = []
 
