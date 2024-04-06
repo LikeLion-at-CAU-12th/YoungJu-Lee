@@ -22,3 +22,15 @@
 ![스크린샷 2024-03-31 204033](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/6864d9e4-c78c-4434-b6b7-120a3e77de5e)
 
 --------
+
+#### <center> DB-session 챌린지 과제 인증샷 1 : ERD<center>
+![스크린샷 2024-04-01 022150](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/22cb0412-ab83-4908-8462-145e78798c11)
+
+
+#### <center> DB-session 챌린지 과제 인증샷 2 : Admin 페이지 <center>
+![스크린샷 2024-04-01 034649](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/bd6dac9f-06f8-49f2-b09c-6b4c5df69acf)
+
+#### <center> DB-session 챌린지 과제 인증샷 2 : sqlite <center>
+![스크린샷 2024-04-01 052541](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/e34ed3c6-d599-4414-9704-bd28e0b025da)
+
+--------
