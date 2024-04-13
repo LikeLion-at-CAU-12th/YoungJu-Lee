@@ -23,6 +23,7 @@ def post_list(request):
             category = body['category']
         )
 
+
         new_post_json = {
             "id": new_post.id,
             "title" : new_post.title,
@@ -168,6 +169,33 @@ def posts_within_one_week(request):
         'message': '일주일 내의 모든 게시물(생성시각 순)',
         'data' : filtered_posts_json_all
     })
+  
+@require_http_methods(["POST"])
+def create_post(request):
 
+    user_id = request.POST.get('user_id')
+    user = User.objects.get(pk=user_id)
 
+    new_post = Post.objects.create(
+        title = request.POST['title'],
+        content = request.POST['content'],
+        user_id = user,
+        category = request.POST['category'],
+        image = request.FILES['image']
+    )
 
+    new_post_json = {
+        "id" : new_post.id,
+        "title" : new_post.title,
+        "content" : new_post.content,
+        "user_id" : new_post.user_id.id,
+        "user_username" : new_post.user_id.username,
+        "category": new_post.category,
+        "image" : new_post.image.name
+    }
+
+    return JsonResponse({
+        'status' : 200,
+        'message' : '게시글 생성 성공',
+        'data' : new_post_json
+    })
