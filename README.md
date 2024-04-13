@@ -41,7 +41,12 @@
 ![스크린샷 2024-04-05 214729](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/102fd3f1-2b2c-4f68-b209-80805cc91f5f)
 
 --------
+
 #### <center> CRUD-session 챌린지 과제 인증샷<center>
 ![스크린샷 2024-04-06 221557](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/9b4ce792-3b61-430d-a284-0283b21b3201)
 
+--------
+  
+#### <center> AWS EC2-session 배포 완료 <center>
+![스크린샷 2024-04-13 231319](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/e08f60a3-3925-4031-93bd-44ab761dd3cb)
 
