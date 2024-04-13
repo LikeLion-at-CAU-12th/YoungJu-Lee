@@ -9,6 +9,11 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
+class HashTag(models.Model):
+    id = models.AutoField(primary_key=True)
+    tag = models.CharField(verbose_name="해시태그", max_length=15)
+
 class Post(BaseModel):
 
     CHOICES = (
@@ -23,6 +28,8 @@ class Post(BaseModel):
     user_id = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE, db_column="user_id")
     category = models.CharField(choices=CHOICES, max_length=20)
     image = models.ImageField(upload_to="%Y/%m/%d", default='', null=True)
+    hash_tag = models.ManyToManyField(HashTag, related_name='posts')
+    
 
 
 class Comment(BaseModel):
@@ -31,4 +38,10 @@ class Comment(BaseModel):
     post_id = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE, db_column="post_id")
     user_id = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE, db_column="user_id")
     is_secret = models.BooleanField(verbose_name="비밀댓글", default=False)
+
+   
+# class Post_HashTag(models.Model):  # 중간 테이블 직접 작성할 경우
+#     post_id = models.ForeignKey("Post", on_delete=models.CASCADE, db_column="post_id")
+#     hashtag_id = models.ForeignKey("HashTag", on_delete=models.CASCADE, db_column="hashtag_id")
+
     
