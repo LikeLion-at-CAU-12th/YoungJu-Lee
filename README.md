@@ -50,3 +50,5 @@
 #### <center> AWS EC2-session 배포 완료 <center>
 ![스크린샷 2024-04-13 231319](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/e08f60a3-3925-4031-93bd-44ab761dd3cb)
 
+#### <center> AWS EC2-session 배포 완료 : 로그사진 <center>
+![스크린샷 2024-04-15 034403](https://github.com/LikeLion-at-CAU-12th/Myeonggyu-Kim/assets/150261503/d4c6ef49-d44c-4886-8e12-128b297fd771)
