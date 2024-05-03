@@ -115,3 +115,25 @@ Comment API APIView로 구현하기
 
 </div>
 </details>
+
+<br>
+
+<details>
+<summary> DRF-session 챌린지 과제 인증샷 </summary>
+<br>
+<div markdown="1">
+GenericAPIView로 Post API 구현하기
+
+![스크린샷 2024-05-03 221857](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/c77ec218-4fe3-482a-bf28-d432933b7cdf)
+![스크린샷 2024-05-03 221911](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/867b7cfb-c86f-4504-af34-c1e0c57af110)
+![스크린샷 2024-05-03 222455](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/fb2bd19e-a8f2-4262-9f04-4bd84e6124cd)
+
+API Swagger 문서화
+
+![스크린샷 2024-05-04 040706](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/88a6cafa-e4ed-4c5a-a5a5-8ad72a1f2ee0)
+![스크린샷 2024-05-04 002338](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/2dd10132-9bdd-41b9-8d19-be8a5ac096d7)
+
+데코레이터 적용 후
+![스크린샷 2024-05-04 040728](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/8341175a-de7e-42cc-a8b8-b732ef115f7c)
+</div>
+</details>
