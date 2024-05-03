@@ -11,4 +11,6 @@ urlpatterns = [
 
     path('', PostList.as_view()),
     path('<int:id>/', PostDetail.as_view()),
+    path('comment/', CommentList.as_view()),
+    path('comment/<int:id>', CommentDetail.as_view()),
 ]

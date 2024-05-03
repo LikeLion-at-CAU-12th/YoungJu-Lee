@@ -202,6 +202,7 @@ def create_post(request):
 
 
 from .serializers import PostSerializer
+from .serializers import CommentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -238,3 +239,38 @@ class PostDetail(APIView):
         post = get_object_or_404(Post, id=id)
         post.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
+    
+    
+class CommentList(APIView):
+    def post(self, request, format = None):
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response((serializer.errors, status.HTTP_400_BAD_REQUEST))
+    
+    def get(self, request, format = None):
+        comment = Comment.objects.all()
+        serializer = CommentSerializer(comment, many=True)
+        return Response(serializer.data)
+
+class CommentDetail(APIView):
+    def get(self, request, id):
+        comment = get_object_or_404(Comment, id=id)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    
+    def put(self, request, id):
+        comment = get_object_or_404(Comment, id=id)
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, id):
+        comment = get_object_or_404(Comment, id=id)
+        comment.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
+
+    
