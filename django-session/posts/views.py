@@ -240,7 +240,55 @@ class PostDetail(APIView):
         post.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
     
-    
+
+from rest_framework import generics
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+
+# 객체 목록 조회, 생성
+class PostList_GenericAPIView(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+# 단일 객체 조회, 수정, 삭제 
+class PostDetail_GenericAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    ### Swagger decorator 테스트 - put 
+    @swagger_auto_schema(
+    # API 엔드포인트 식별자
+    operation_id='post 객체 수정',
+    # API 엔드포인트 설명
+    operation_description='post 객체를 수정합니다',
+    # 엔드포인트를 분류 카테고리
+    tags=['posts'],
+    # 요청 데이터 형식 
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            'title': openapi.Schema(type=openapi.TYPE_STRING, description="제목"),
+            'content': openapi.Schema(type=openapi.TYPE_STRING, description="내용"),
+            'image': openapi.Schema(type=openapi.TYPE_FILE, description="이미지"),
+        }
+    ),
+     responses={200: openapi.Response(
+        description="200 OK",
+        schema=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'title': openapi.Schema(type=openapi.TYPE_STRING, description="제목"),
+                'content': openapi.Schema(type=openapi.TYPE_STRING, description="내용"),
+                'image': openapi.Schema(type=openapi.TYPE_FILE, description="이미지"),
+                'user_id': openapi.Schema(type=openapi.TYPE_STRING, description="작성자"),
+            }
+        )
+    )}
+)
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
 class CommentList(APIView):
     def post(self, request, format = None):
         serializer = CommentSerializer(data=request.data)
