@@ -221,7 +221,11 @@ class PostList(APIView):
         serializer = PostSerializer(post, many=True)
         return Response(serializer.data)
     
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 class PostDetail(APIView):
+    permission_classes=[IsAuthenticatedOrReadOnly]  # 인가 적용 가능
+
     def get(self, request, id):
         post = get_object_or_404(Post, id=id)
         serializer = PostSerializer(post)
