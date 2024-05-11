@@ -10,7 +10,7 @@ urlpatterns = [
     # path('within-one-week', posts_within_one_week, name = "posts_within_one_week")
 
     path('', PostList.as_view()),
-    path('<int:id>/', PostDetail.as_view()),
+    path('<int:pk>/', PostDetail.as_view()),
     path('comment/', CommentList.as_view()),
     path('comment/<int:id>', CommentDetail.as_view()),
 ]

@@ -115,3 +115,21 @@ Comment API APIView로 구현하기
 
 </div>
 </details>
+
+<br>
+
+<details>
+<summary> JWT-session 스탠다드 과제 인증샷</summary>
+<div markdown="1">
+<br>
+SecretKey Permission
+
+![스크린샷 2024-05-11 141600](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/8fa18861-4b6d-428a-a28a-22c17c1b2218)
+![스크린샷 2024-05-11 130750](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/709de0d8-2cb9-4929-a89c-84c8e7c846b7)
+
+<br>
+IsWriterOrReadOnly Permission
+
+![스크린샷 2024-05-11 150952](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/7e1ac163-4c40-41bc-93ae-9f413e7a6b5c)
+![스크린샷 2024-05-11 151129](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/0de0f8a8-eeb6-40b6-80e9-dec39f584c05)
+

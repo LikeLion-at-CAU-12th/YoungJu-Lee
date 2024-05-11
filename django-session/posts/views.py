@@ -221,28 +221,36 @@ class PostList(APIView):
         serializer = PostSerializer(post, many=True)
         return Response(serializer.data)
     
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-
-class PostDetail(APIView):
-    permission_classes=[IsAuthenticatedOrReadOnly]  # 인가 적용 가능
-
-    def get(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        serializer = PostSerializer(post)
-        return Response(serializer.data)
     
-    def put(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        serializer = PostSerializer(post, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+from config.permissions import IsWriterOrReadOnly
+from rest_framework import generics
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     
-    def delete(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        post.delete()
-        return Response(status = status.HTTP_204_NO_CONTENT)
+    permission_classes = [IsWriterOrReadOnly]
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+# class PostDetail(APIView): 
+
+#     def get(self, request, id):
+#         post = get_object_or_404(Post, id=id)
+#         serializer = PostSerializer(post)
+#         return Response(serializer.data)
+    
+#     def put(self, request, id):
+#         post = get_object_or_404(Post, id=id)
+#         serializer = PostSerializer(post, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    
+#     def delete(self, request, id):
+#         post = get_object_or_404(Post, id=id)
+#         post.delete()
+#         return Response(status = status.HTTP_204_NO_CONTENT)
     
     
 class CommentList(APIView):
