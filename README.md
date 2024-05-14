@@ -119,6 +119,27 @@ Comment API APIView로 구현하기
 <br>
 
 <details>
+<summary> DRF-session 챌린지 과제 인증샷 </summary>
+<br>
+<div markdown="1">
+GenericAPIView로 Post API 구현하기
+
+![스크린샷 2024-05-03 221857](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/c77ec218-4fe3-482a-bf28-d432933b7cdf)
+![스크린샷 2024-05-03 221911](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/867b7cfb-c86f-4504-af34-c1e0c57af110)
+![스크린샷 2024-05-03 222455](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/fb2bd19e-a8f2-4262-9f04-4bd84e6124cd)
+
+API Swagger 문서화
+
+![스크린샷 2024-05-04 040706](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/88a6cafa-e4ed-4c5a-a5a5-8ad72a1f2ee0)
+![스크린샷 2024-05-04 002338](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/2dd10132-9bdd-41b9-8d19-be8a5ac096d7)
+
+데코레이터 적용 후
+![스크린샷 2024-05-04 040728](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/8341175a-de7e-42cc-a8b8-b732ef115f7c)
+</div>
+</details>
+
+  
+<details>
 <summary> JWT-session 스탠다드 과제 인증샷</summary>
 <div markdown="1">
 <br>
@@ -132,4 +153,5 @@ IsWriterOrReadOnly Permission
 
 ![스크린샷 2024-05-11 150952](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/7e1ac163-4c40-41bc-93ae-9f413e7a6b5c)
 ![스크린샷 2024-05-11 151129](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/0de0f8a8-eeb6-40b6-80e9-dec39f584c05)
-
+</div>
+</details>
