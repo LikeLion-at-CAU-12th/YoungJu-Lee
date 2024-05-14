@@ -51,6 +51,7 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     "corsheaders",
     "rest_framework",
+    'rest_framework_simplejwt',
     'drf_yasg',
 ]
 
@@ -152,3 +153,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+        'config.permissions.IsWriterOrReadOnly'
+    )
+}
+
+REST_USE_JWT = True
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),    # 유효기간 3시간
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),    # 유효기간 7일
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'TOKEN_USER_CLASS': 'accounts.User', # 내가 만든 유저모델과 연결
+}
