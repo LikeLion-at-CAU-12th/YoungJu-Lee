@@ -225,9 +225,6 @@ class PostList(APIView):
 from config.permissions import IsWriterOrReadOnly
 from rest_framework import generics
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    
-    permission_classes = [IsWriterOrReadOnly]
-
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
