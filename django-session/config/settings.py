@@ -160,9 +160,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES':(
-        'config.permissions.IsWriterOrReadOnly'
-    )
+    # 'DEFAULT_PERMISSION_CLASSES':(
+    #     'config.permissions.IsWriterOrReadOnly'
+    # )
 }
 
 REST_USE_JWT = True

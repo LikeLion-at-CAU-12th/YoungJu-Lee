@@ -3,6 +3,13 @@ from rest_framework_simplejwt.serializers import RefreshToken
 from rest_framework import serializers
 from .models import User
 
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
+
 # 회원가입
 class RegisterSerializer(serializers.ModelSerializer): 
     password = serializers.CharField(required=True) # 필수 input이라는 뜻
@@ -46,11 +53,15 @@ class AuthSerializer(serializers.ModelSerializer):
         fields = ['username', 'password']
     
     def validate(self,data):
+
         username = data.get("username", None)
         password = data.get("password", None)
 
         user = User.get_user_or_none_by_username(username=username) # model 함수
 
+        if user.deleted_at is not None:
+            raise serializers.ValidationError("이미 탈퇴한 회원입니다.")
+        
         if user is None: 
             raise serializers.ValidationError("user account not exist")
         else:
@@ -68,7 +79,3 @@ class AuthSerializer(serializers.ModelSerializer):
         }
 
         return data
-    
-
-    #모델을 request랑 response로 나누어서 관리하면 용이
-    #request는 요청데이터의 serializer..

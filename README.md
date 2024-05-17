@@ -138,7 +138,8 @@ API Swagger 문서화
 </div>
 </details>
 
-  
+<br>
+
 <details>
 <summary> JWT-session 스탠다드 과제 인증샷</summary>
 <div markdown="1">
@@ -155,3 +156,13 @@ IsWriterOrReadOnly Permission
 ![스크린샷 2024-05-11 151129](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/0de0f8a8-eeb6-40b6-80e9-dec39f584c05)
 </div>
 </details>
+
+<br>
+<details>
+<summary>JWT-session 챌린지 과제 인증샷</summary>
+<div markdown="1">
+<br>
+회원탈퇴 API 구현
+
+![스크린샷 2024-05-17 181909](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/749f15ce-2f4a-4722-829a-98b9b4707342)
+![스크린샷 2024-05-17 181930](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/1d3739d4-4e52-459b-9b96-1f9edaaa1b02)

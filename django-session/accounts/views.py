@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from accounts.serializers import RegisterSerializer
 from accounts.serializers import AuthSerializer
+from accounts.models import User
 
 # Create your views here.
 
@@ -71,3 +72,13 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({"messge": "로그아웃되었습니다."}, status=status.HTTP_200_OK)
+    
+
+class deleteView(APIView):
+    # 회원 탈퇴
+   permission_classes = [IsAuthenticated]
+
+   def delete(self, request):
+        user = request.user
+        user.soft_delete()
+        return Response({"message":"회원 탈퇴 성공"}, status=status.HTTP_204_NO_CONTENT)
