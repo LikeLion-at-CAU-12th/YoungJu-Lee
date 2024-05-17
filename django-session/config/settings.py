@@ -53,8 +53,14 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     'rest_framework_simplejwt',
     'drf_yasg',
+    'django_apscheduler',
 ]
 
+# default
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a" 
+
+# 자동으로 스케쥴러 실행
+SCHEDULER_DEFAULT = True
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 

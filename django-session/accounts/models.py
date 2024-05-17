@@ -7,6 +7,9 @@ class User(AbstractUser):
     deleted_at = models.DateTimeField(null=True, blank=True)  
     # soft delete, db 데이터를 실제로 삭제하는 것이 아닌 삭제여부를 나타내는 속성을 통해 삭제를 표현
 
+    request_at = models.DateTimeField(null=True, blank=True)
+    # 회원 복구 요청 시간
+
     # 모델 내부 함수 구현 가능(이 모델에서만 접근가능하게 하려고, 안전)
     @staticmethod
     def get_user_or_none_by_username(username):
@@ -27,6 +30,3 @@ class User(AbstractUser):
     def soft_delete(self):
         self.deleted_at = timezone.now()
         self.save()
-
-
-    

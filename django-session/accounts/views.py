@@ -5,9 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from accounts.serializers import RegisterSerializer
 from accounts.serializers import AuthSerializer
+from accounts.serializers import RestoreSerializer
 from accounts.models import User
-
-# Create your views here.
 
 class RegisterView(APIView):
     # 회원가입 메소드
@@ -74,11 +73,51 @@ class LogoutView(APIView):
         return Response({"messge": "로그아웃되었습니다."}, status=status.HTTP_200_OK)
     
 
-class deleteView(APIView):
+class DeleteView(APIView):
     # 회원 탈퇴
    permission_classes = [IsAuthenticated]
 
    def delete(self, request):
         user = request.user
         user.soft_delete()
-        return Response({"message":"회원 탈퇴 성공"}, status=status.HTTP_204_NO_CONTENT)
+        res = Response(
+                {
+                    "user" :{
+                        "id" : user.id,
+                        "email" : user.email,
+                        "deleted_at" : user.deleted_at
+                    },
+                    "message" : "회원 탈퇴 성공",
+                },
+                status=status.HTTP_204_NO_CONTENT,
+            )
+        return res
+
+class RestoreView(APIView):
+    # 회원 복구
+    def post(self, request):
+        username = request.data.get('username')
+        user = User.get_user_or_none_by_username(username)
+        serializer = RestoreSerializer(user, data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            res = Response(
+                {
+                    "user" :{
+                        "id" : user.id,
+                        "email" : user.email,
+                        "deleted_at" : user.deleted_at
+                    },
+                    "message" : "회원 복구 성공",
+                },
+                status=status.HTTP_201_CREATED,
+            )
+            return res
+        else:
+            return Response({"message":"회원 복구 실패"}, status=status.HTTP_400_BAD_REQUEST)
+
+            
+
+
+
+

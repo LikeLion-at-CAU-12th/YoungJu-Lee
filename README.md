@@ -144,7 +144,7 @@ API Swagger 문서화
 <summary> JWT-session 스탠다드 과제 인증샷</summary>
 <div markdown="1">
 <br>
-SecretKey Permission
+SecretKey Permissiont
 
 ![스크린샷 2024-05-11 141600](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/8fa18861-4b6d-428a-a28a-22c17c1b2218)
 ![스크린샷 2024-05-11 130750](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/709de0d8-2cb9-4929-a89c-84c8e7c846b7)
@@ -164,5 +164,11 @@ IsWriterOrReadOnly Permission
 <br>
 회원탈퇴 API 구현
 
-![스크린샷 2024-05-17 181909](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/749f15ce-2f4a-4722-829a-98b9b4707342)
-![스크린샷 2024-05-17 181930](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/1d3739d4-4e52-459b-9b96-1f9edaaa1b02)
+![스크린샷 2024-05-17 225607](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/e2f18baa-55df-4388-bc41-ab6d6658da02)
+![스크린샷 2024-05-17 225622](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/f96fe9b3-ac20-4e7d-9119-0dbe236d82b8)
+
+<br>
+회원복구 API 구현
+
+![스크린샷 2024-05-17 225645](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/00965ce5-3d38-4461-a9e9-3d8e828c069a)
+

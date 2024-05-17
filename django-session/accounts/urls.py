@@ -12,7 +12,8 @@ urlpatterns = [
     path("join/", RegisterView.as_view()),
     path("login/", AuthView.as_view()),
     path("logout/", LogoutView.as_view()),
-    path("delete/", deleteView.as_view()),
+    path("delete/", DeleteView.as_view()),
+    path("restore/", RestoreView.as_view()),
 
     # 토큰
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

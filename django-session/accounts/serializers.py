@@ -2,7 +2,7 @@
 from rest_framework_simplejwt.serializers import RefreshToken
 from rest_framework import serializers
 from .models import User
-
+from django.utils import timezone
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -79,3 +79,40 @@ class AuthSerializer(serializers.ModelSerializer):
         }
 
         return data
+
+class RestoreSerializer(serializers.ModelSerializer):
+
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        
+    def validate(self, data):
+        # 아이디, 비밀번호를 맞게 입력한 경우 복구한다.
+        username = data.get("username", None)
+        password = data.get("password", None)
+
+        user = User.get_user_or_none_by_username(username=username)
+
+        if user is None: 
+            raise serializers.ValidationError("존재하지 않는 회원입니다.")
+        if user.deleted_at is None:
+            raise serializers.ValidationError("존재하는 회원입니다.")
+        if not user.check_password(password):
+            raise serializers.ValidationError("잘못된 비밀번호 입니다.")
+
+        return data
+
+    def save(self):
+        user = self.instance
+        user.request_at = timezone.now()
+        user.deleted_at = None
+        user.save()
+        
+        return user
+
+        
+
+
