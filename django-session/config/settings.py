@@ -54,6 +54,11 @@ THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'django_apscheduler',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",    
+    # "allauth.socialaccount.providers.{제공_업체}" 찾아서 사용 가능
 ]
 
 # default
@@ -75,7 +80,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
+
+ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
+ACCOUNT_USERNAME_REQUIRED = True         # username 필드 사용 o
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 
 CORS_ALLOW_CREDENTIALS = True
 

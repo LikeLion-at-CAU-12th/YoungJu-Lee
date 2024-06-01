@@ -14,6 +14,9 @@ urlpatterns = [
     path("logout/", LogoutView.as_view()),
     path("delete/", DeleteView.as_view()),
     path("restore/", RestoreView.as_view()),
+    
+    path("google/login/", google_login, name="google_login"),
+    path("google/callback/", google_callback, name="google_callback"),
 
     # 토큰
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
