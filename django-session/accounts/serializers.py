@@ -113,6 +113,8 @@ class RestoreSerializer(serializers.ModelSerializer):
         
         return user
 
+from allauth.socialaccount.models import SocialAccount
+
 class OAuthSerializer(serializers.ModelSerializer):
     email = serializers.CharField(required=True)
 
@@ -124,9 +126,9 @@ class OAuthSerializer(serializers.ModelSerializer):
         email = data.get("email", None)
         
         user = User.get_user_or_none_by_email(email=email)
-        
+
         if user is None:
-            raise serializers.ValidationError("user account not exists")
+            raise serializers.ValidationError("Not existing user account")
 
         token = RefreshToken.for_user(user)
         refresh_token = str(token)

@@ -3,6 +3,7 @@ from rest_framework_simplejwt.serializers import RefreshToken
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404 
 from accounts.serializers import RegisterSerializer
 from accounts.serializers import AuthSerializer
 from accounts.serializers import RestoreSerializer
@@ -146,11 +147,15 @@ from django.shortcuts import redirect
 from json import JSONDecodeError
 from django.http import JsonResponse
 import requests
+from allauth.socialaccount.models import SocialAccount
 
+
+# 구글 로그인 페이지로 넘어간다
 def google_login(request):
    scope = GOOGLE_SCOPE_USERINFO        # + "https://www.googleapis.com/auth/drive.readonly" 등 scope 설정 후 자율적으로 추가
    return redirect(f"{GOOGLE_REDIRECT}?client_id={GOOGLE_CLIENT_ID}&response_type=code&redirect_uri={GOOGLE_CALLBACK_URI}&scope={scope}")
 
+# 인가 코드를 받고 그것을 이용해 access token을 발급받는다
 def google_callback(request):
     code = request.GET.get("code")      # Query String 으로 넘어옴
     
@@ -162,7 +167,7 @@ def google_callback(request):
         raise JSONDecodeError(error)
 
     google_access_token = token_req_json.get('access_token')
-
+    # access toke으로 구글 계정 이메일 정보를 가져온다
     email_response = requests.get(f"https://www.googleapis.com/oauth2/v1/tokeninfo?access_token={google_access_token}")
     res_status = email_response.status_code
 
@@ -172,10 +177,21 @@ def google_callback(request):
     email_res_json = email_response.json()
     # email = email_res_json.get('email')
 
+    # 이메일이 존재하면 계정정보를 가져온다
     serializer = OAuthSerializer(data=email_res_json)
     try:
         if serializer.is_valid(raise_exception=True):
             user = serializer.validated_data["user"]
+
+            social_user = SocialAccount.objects.get(user=user)
+
+            if social_user is None:
+                return JsonResponse({"message":"Not existing google account user"}, status=status.HTTP_404_NOT_FOUND)
+            
+            if social_user.provider != 'google':
+                #return Response({"message":"Not a google account"}, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse({"message":"Not a google account."}, status=status.HTTP_400_BAD_REQUEST)
+            
             access_token = serializer.validated_data["access_token"]
             refresh_token = serializer.validated_data["refresh_token"]
             res = JsonResponse(

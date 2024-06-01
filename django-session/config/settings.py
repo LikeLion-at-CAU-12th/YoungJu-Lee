@@ -86,6 +86,7 @@ MIDDLEWARE = [
 ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
 ACCOUNT_USERNAME_REQUIRED = True         # username 필드 사용 o
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 CORS_ALLOW_CREDENTIALS = True
 
