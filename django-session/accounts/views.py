@@ -189,7 +189,6 @@ def google_callback(request):
                 return JsonResponse({"message":"Not existing google account user"}, status=status.HTTP_404_NOT_FOUND)
             
             if social_user.provider != 'google':
-                #return Response({"message":"Not a google account"}, status=status.HTTP_400_BAD_REQUEST)
                 return JsonResponse({"message":"Not a google account."}, status=status.HTTP_400_BAD_REQUEST)
             
             access_token = serializer.validated_data["access_token"]
@@ -215,4 +214,95 @@ def google_callback(request):
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+KAKAO_REDIRECT = get_secret('KAKAO_REDIRECT_URI')
+KAKAO_CLIENT_ID = get_secret('KAKAO_REST_API_KEY')
+KAKAO_CLIENT_SECRET_KEY = get_secret('KAKAO_CLIENT_SECRET_KEY')
 
+kakao_login_uri = "https://kauth.kakao.com/oauth/authorize"
+kakao_token_uri = "https://kauth.kakao.com/oauth/token"
+kakao_profile_uri = "https://kapi.kakao.com/v2/user/me"
+
+def kakao_login(request):
+    return redirect(f"{kakao_login_uri}?client_id={KAKAO_CLIENT_ID}&redirect_uri={KAKAO_REDIRECT}&response_type=code")
+
+def kakao_callback(request):
+    code = request.GET.get("code")      # Query String 으로 넘어옴
+    
+    if code is None:
+        return JsonResponse({"error":"code error"},status=status.HTTP_400_BAD_REQUEST)
+
+    request_data = {
+        'grant_type': 'authorization_code',
+        'client_id': KAKAO_CLIENT_ID,
+        'redirect_uri': KAKAO_REDIRECT,
+        'client_secret': KAKAO_CLIENT_SECRET_KEY,
+        'code': code,
+    }
+    token_headers = {
+        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+    }
+
+    token_req = requests.post(kakao_token_uri, data=request_data, headers=token_headers)
+    token_req_json = token_req.json()
+    error = token_req_json.get("error")
+
+    if error is not None:
+        raise JSONDecodeError(error)
+
+    print(token_req_json)
+    kakao_access_token = token_req_json.get('access_token')
+
+    if kakao_access_token is None:
+        return JsonResponse({"error":"access token error"},status=status.HTTP_400_BAD_REQUEST)
+
+    # access token으로 카카오 계정 정보를 요청한다
+
+    kakao_access_token = f"Bearer {kakao_access_token}"
+    auth_headers = {
+        "Authorization": kakao_access_token,
+        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+    }
+    kakao_user_info = requests.get(kakao_profile_uri, headers=auth_headers)
+    print(kakao_user_info)
+
+    res_status = kakao_user_info.status_code
+    if res_status != 200:
+        return JsonResponse({'message': 'You failed to get user info'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    kakao_user_info_json = kakao_user_info.json()
+   
+    # 이메일이 존재하면 계정정보를 가져온다
+    serializer =  OAuthSerializer(data=kakao_user_info_json)
+    try:
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.validated_data["user"]
+
+            # social_user = SocialAccount.objects.get(user=user)
+
+            # if social_user is None:
+            #     return JsonResponse({"message":"Not existing google account user"}, status=status.HTTP_404_NOT_FOUND)
+            
+            # if social_user.provider != 'google':
+            #     return JsonResponse({"message":"Not a google account."}, status=status.HTTP_400_BAD_REQUEST)
+            
+            access_token = serializer.validated_data["access_token"]
+            refresh_token = serializer.validated_data["refresh_token"]
+            res = JsonResponse(
+                {
+                    "user": {
+                        "id": user.id,
+                        "email": user.email,
+                    },
+                    "message": "login success",
+                    "token": {
+                        "access_token": access_token,
+                        "refresh_token": refresh_token,
+                    },
+                },
+                status=status.HTTP_200_OK,
+            )
+            res.set_cookie("access-token", access_token, httponly=True)
+            res.set_cookie("refresh-token", refresh_token, httponly=True)
+            return res
+    except:       # 회원가입이 필요함
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

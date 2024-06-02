@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",    
+    "allauth.socialaccount.providers.kakao",    
     # "allauth.socialaccount.providers.{제공_업체}" 찾아서 사용 가능
 ]
 
@@ -86,7 +87,27 @@ MIDDLEWARE = [
 ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
 ACCOUNT_USERNAME_REQUIRED = True         # username 필드 사용 o
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+REST_USE_JWT = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id': 'YOUR_KAKAO_CLIENT_ID',
+            'secret': 'YOUR_KAKAO_CLIENT_SECRET',
+            'key': ''
+        }
+    }
+}
 
 CORS_ALLOW_CREDENTIALS = True
 

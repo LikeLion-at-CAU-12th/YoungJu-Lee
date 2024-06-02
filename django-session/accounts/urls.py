@@ -19,6 +19,10 @@ urlpatterns = [
     path("google/login/", google_login, name="google_login"),
     path("google/callback/", google_callback, name="google_callback"),
 
+    path("kakao/login/", kakao_login, name="kakao_login"),
+    path("kakao/callback/", kakao_callback, name="kakao_callback"),
+
+
     # 토큰
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

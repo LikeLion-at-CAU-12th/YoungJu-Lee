@@ -171,4 +171,17 @@ IsWriterOrReadOnly Permission
 회원복구 API 구현
 
 ![스크린샷 2024-05-17 225645](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/00965ce5-3d38-4461-a9e9-3d8e828c069a)
+</details>
 
+<br>
+
+<details>
+<summary>OAuth-session</summary>
+<div markdown="1">
+<br>
+카카오 소셜로그인 구현
+(callback 함수 내 오류 미해결)
+
+![스크린샷 2024-06-02 054428](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/41f90d30-779f-4bcb-b24c-8a9b1679a213)
+![스크린샷 2024-06-02 055641](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/f238a1c3-f4d1-488c-ba44-cbd80068c40e)
+</details>
