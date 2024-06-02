@@ -172,3 +172,16 @@ IsWriterOrReadOnly Permission
 
 ![스크린샷 2024-05-17 225645](https://github.com/LikeLion-at-CAU-12th/Juyoung-Lee/assets/150261503/00965ce5-3d38-4461-a9e9-3d8e828c069a)
 
+</details>
+
+<br>
+
+<details>
+<summary>OAuth-session</summary>
+<div markdown="1">
+<br>
+구글 소셜로그인 구현
+
+![스크린샷 2024-06-02 164410](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/a4261bc1-b278-4907-9211-0ed0a47d7b5d)
+
+</details>
