@@ -17,10 +17,11 @@ class PostSerializer(serializers.ModelSerializer):
             return data
         return data
     
+    # fix 필요
     def save(self):
-        file = self.validated_data['thumbnail']
-        if file:
-            s3_url = f"https://{settings.AWS_S3_CUSTOM_DOMAIN}/{file.name}"
+        file = super().create(self.validated_data)
+        if file.thumbnail:
+            s3_url = f"https://{settings.AWS_S3_CUSTOM_DOMAIN}/{file.thumbnail.name}"
             self.validated_data['thumbnail'] = s3_url
         return super().save()
 

@@ -29,7 +29,7 @@ class Post(BaseModel):
     category = models.CharField(choices=CHOICES, max_length=20)
     #image = models.ImageField(upload_to="%Y/%m/%d", default='', null=True, blank=True)
     thumbnail = models.ImageField(null=True, blank=True, verbose_name="thumbnail")
-    hash_tag = models.ManyToManyField(HashTag, related_name='posts')
+    # hash_tag = models.ManyToManyField(HashTag, related_name='posts')
     
 
 
