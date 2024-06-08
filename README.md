@@ -195,4 +195,10 @@ png 확장자 파일 처리
 
 ![스크린샷 2024-06-08 184257](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/0265c0a9-3a25-41d9-818a-fe668a2e187e)
 
+<br>
+S3 url DB에 저장하기
+(수많은 츄라이 끝에 성공 ,,^^!)
+
+![스크린샷 2024-06-09 000711](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/69b007c7-408f-4cc2-acec-a157610bdd02)
+
 
