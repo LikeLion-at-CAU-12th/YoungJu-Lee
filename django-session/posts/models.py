@@ -27,7 +27,8 @@ class Post(BaseModel):
     content = models.TextField(verbose_name="내용")
     user_id = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE, db_column="user_id")
     category = models.CharField(choices=CHOICES, max_length=20)
-    image = models.ImageField(upload_to="%Y/%m/%d", default='', null=True, blank=True)
+    #image = models.ImageField(upload_to="%Y/%m/%d", default='', null=True, blank=True)
+    thumbnail = models.ImageField(null=True, blank=True, verbose_name="thumbnail")
     hash_tag = models.ManyToManyField(HashTag, related_name='posts')
     
 
