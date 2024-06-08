@@ -185,3 +185,14 @@ IsWriterOrReadOnly Permission
 ![스크린샷 2024-06-02 164410](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/a4261bc1-b278-4907-9211-0ed0a47d7b5d)
 
 </details>
+
+<br>
+
+<details>
+<summary>RDS, S3, IAM-session</summary>
+<br>
+png 확장자 파일 처리
+
+![스크린샷 2024-06-08 184257](https://github.com/LikeLion-at-CAU-12th/YoungJu-Lee/assets/150261503/0265c0a9-3a25-41d9-818a-fe668a2e187e)
+
+
